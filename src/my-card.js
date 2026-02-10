@@ -12,37 +12,42 @@ export class MyCard extends LitElement {
     return 'my-card';
   }
 
+  static get properties() {
+    return {
+      title: { type: String },
+      image: {type: String},
+      alt: {type: String},
+      description: {type: String}
+    };
+  }
+
   constructor() {
     super();
-    this.title = "My card";
+    this.title = 'My card';
+    this.image = '';
+    this.alt = '';
+    this.description = '';
   }
 
   static get styles() {
     return css`
-    .card.fancy {
-  background-color: red;
-}
-
-h1 {
-  font-size: 10px;
-}
-
-#card-list {
-  display: flex;
-}
+    :host {
+      display: inline-block;
+    }
+    
 .card {
   font-size: 1em;
   display: inline-flex;
   border: 2px solid grey;
   padding: 8px;
   margin: 8px;
-  opacity: .8;
   background-color: navy;
 }
 
 .card-image {
   width: 200px;
-  height: 100%;
+  height: 300px;
+  object-fit: cover;
 }
 
 .card-text {
@@ -58,39 +63,29 @@ h1 {
 .card-title {
   position: sticky;
   top: 0;
-  background-color: var(--my-card-title-background-color, #eeeeee);
-  color: var(--my-card-title-color, black);
   text-align: center;
   font-size: 2em;
   padding: 8px 8px 16px;
-  margin: 0 -8px;
+  background-color: var(--my-card-title-background-color, #eeeeee);
+  color: var(--my-card-title-color, black);
 }
-      :host {
-        display: block;
-      }
     `;
   }
 
   render() {
-    return html`<div class="control-wrapper">
-</div>
-<div id="cardlist">
-  <div class="card">
-    <img class="card-image" ${this.image}src="https://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/4431678.png&w=350&h=254" />
-    <div class="card-text">
-      <h1 class="card-title">${this.title}</h1>
-      <div class="card-details">
-        <div class="card-details">
-        <p>
-        Tyrese Maxey is the best basketball player in the world. <p></p>`;
-  }
-
-  static get properties() {
-    return {
-      title: { type: String },
-      image: {type: String},
-      alt: {type: String},
-    };
+    return html`
+    <div class ="card">
+      <img
+      class="card-image"
+      src="${this.image}"
+      alt="${this.alt}"
+      />
+      <div class="card-text">
+        <h1 class="card-title">${this.title} </h1>
+        <p>${this.description}</p>
+      </div>
+    </div>  
+  `;
   }
 }
 
