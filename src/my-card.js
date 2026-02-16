@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit';
+import "@haxtheweb/meme-maker/meme-maker.js";
 
 /**
  * Now it's your turn. Here's what we need to try and do:
@@ -96,11 +97,7 @@ display: inline-block;
   render() {
     return html`
     <div class ="card">
-      <img
-      class="card-image"
-      src="${this.image}"
-      alt="${this.alt}"
-      />
+       <meme-maker top-text="${this.title}" bottom-text="${this.title}" image-url="${this.image}"></meme-maker>
       <div class="card-text">
         <h1 class="card-title">${this.title} </h1>
         <details ?open="${this.fancy}" @toggle="${this.openChanged}">
@@ -109,7 +106,6 @@ display: inline-block;
     <slot>${this.description}</slot>
   </div>
  </details>
-
       </div>
     </div>  
   `;
